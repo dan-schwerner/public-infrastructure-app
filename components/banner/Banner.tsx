@@ -1,10 +1,8 @@
-import { Box, Button, Container, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { SITE } from '@/lib/site';
 
-// Typography values mirror the df-portfolio Banner exactly: eyebrow + subtitle
-// at 1.6rem, the headline as h1 at 6rem, and an outlined "secondary" (white)
-// button at 210px / 4rem. The headline scales down on xs so the long Maltese
-// wording doesn't overflow a phone screen (df's short name didn't need this).
+// Three-tier hierarchy on the blue hero: a small uppercase eyebrow, the large
+// headline, then a medium supporting line — plus a single white CTA.
 const Banner = () => {
   return (
     <Box
@@ -20,43 +18,40 @@ const Banner = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Typography sx={{ fontSize: '1.6rem', color: 'white' }}>
-          Pjattaforma għaċ-Ċittadini
+        <Typography
+          sx={{
+            color: 'rgba(255,255,255,0.85)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.18em',
+            fontSize: '0.95rem',
+            mb: 2,
+          }}
+        >
+          Proġetti Qribek
         </Typography>
         <Typography
           variant="h1"
           sx={{ fontSize: { xs: '2.8rem', md: '6rem' }, color: 'white', lineHeight: 1.05, m: 0 }}
         >
-          Naraw x&apos;qed jinbena.
+          Ara x&apos;qed Jinbena
         </Typography>
-        <Typography sx={{ fontSize: '1.6rem', color: 'white', marginTop: '1rem', maxWidth: '40ch' }}>
-          Iċ-ċittadini jaraw il-proġetti ta&apos; infrastruttura ħdejhom, jagħtu l-fehma tagħhom, u
-          jirrapportaw ir-riskji. Trasparenza mibnija fil-qalba — mhux miżjuda fl-aħħar.
+        <Typography sx={{ fontSize: '1.6rem', color: 'white', marginTop: '1rem', mb: 0 }}>
+          Nibdew naċċertaw it-trasparenza
         </Typography>
-        <Stack
-          direction={{ xs: 'column', sm: 'row' }}
-          spacing={2}
-          sx={{ marginTop: '2rem' }}
+        <Button
+          variant="contained"
+          color="accent"
+          href={SITE.appPath}
+          size="large"
+          sx={{
+            marginTop: '2rem',
+            width: { xs: '100%', md: '210px' },
+            height: '4rem',
+            fontWeight: 600,
+          }}
         >
-          <Button
-            variant="outlined"
-            color="secondary"
-            href={SITE.appPath}
-            size="large"
-            sx={{ width: { xs: '100%', md: '210px' }, height: '4rem' }}
-          >
-            Iftaħ l-Applikazzjoni
-          </Button>
-          <Button
-            variant="text"
-            color="secondary"
-            href="#ghaliex"
-            size="large"
-            sx={{ width: { xs: '100%', md: 'auto' }, height: '4rem' }}
-          >
-            Għaliex għandna bżonnha?
-          </Button>
-        </Stack>
+          Iftaħ l-App
+        </Button>
       </Container>
     </Box>
   );

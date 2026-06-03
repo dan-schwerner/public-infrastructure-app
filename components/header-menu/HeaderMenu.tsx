@@ -47,7 +47,13 @@ const HeaderMenu: FC<HeaderMenuProps> = ({ menuItems }) => {
                 {item.name}
               </Button>
             ))}
-            <Button variant="outlined" color="secondary" href={SITE.appPath} sx={{ ml: 1 }}>
+            <Button
+              variant="contained"
+              color="accent"
+              href={SITE.appPath}
+              disableElevation
+              sx={{ ml: 1 }}
+            >
               Iftaħ l-App
             </Button>
           </Box>

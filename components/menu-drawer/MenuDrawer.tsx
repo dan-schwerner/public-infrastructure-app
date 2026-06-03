@@ -50,7 +50,7 @@ const MenuDrawer: FC<MenuDrawerProps> = ({ enabled, callback, menuItems }) => {
           ))}
         </List>
         <Box sx={{ px: 2, pb: 3 }}>
-          <Button fullWidth variant="contained" href={SITE.appPath}>
+          <Button fullWidth variant="contained" color="accent" href={SITE.appPath}>
             Iftaħ l-App
           </Button>
         </Box>

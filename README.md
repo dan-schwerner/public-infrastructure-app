@@ -25,10 +25,24 @@ A Next.js (App Router) site with two parts:
 
 The values you're most likely to change live in **`lib/site.ts`**:
 
-- `email` — the contact email shown on the homepage (currently `danfalzon26@gmail.com`).
-- `profileUrl` — where "Żur il-profil prinċipali tiegħi" points. **TODO:** update this to
-  your deployed df-portfolio URL (currently a placeholder, `https://danfalzon.com`).
+- `email` — the contact email shown on the homepage (`contact@danielfalzon.mt`).
+- `profileUrl` — where "Żur il-profil prinċipali tiegħi" points (`https://danielfalzon.mt`, opens in a new tab).
 - `appPath` — the route the "open the app" CTAs link to (`/app`).
+
+## Contact form email (Resend)
+
+The bottom contact form and the chat-bubble both POST to `app/api/contact/route.ts`, which
+sends the message via [Resend](https://resend.com) with `Reply-To` set to the visitor (so
+replies go straight back to them). It includes a hidden honeypot field for basic spam defence.
+Configure it with env vars — see `.env.example`:
+
+- `RESEND_API_KEY` *(required)* — your Resend API key.
+- `CONTACT_TO_EMAIL` — delivery inbox (defaults to `SITE.email`).
+- `CONTACT_FROM_EMAIL` — a verified Resend sender; until a domain is verified in Resend, leave
+  it unset to use the sandbox sender (which only delivers to your own Resend account email).
+
+Copy `.env.example` to `.env.local` for development, and set the same vars in Vercel for
+production. Without `RESEND_API_KEY` the endpoint returns a friendly "not configured" error.
 
 ## Running the code
 

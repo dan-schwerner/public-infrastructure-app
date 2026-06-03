@@ -2,6 +2,21 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { raleway, roboto } from '@/lib/fonts';
 
+// Accent colour (df-portfolio's #F2674E coral) used for the "open the app" CTAs.
+declare module '@mui/material/styles' {
+  interface Palette {
+    accent: Palette['primary'];
+  }
+  interface PaletteOptions {
+    accent?: PaletteOptions['primary'];
+  }
+}
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    accent: true;
+  }
+}
+
 const theme = createTheme({
   typography: {
     fontFamily: raleway.style.fontFamily,
@@ -37,6 +52,10 @@ const theme = createTheme({
     },
     secondary: {
       main: '#ffffff',
+    },
+    accent: {
+      main: '#F2674E',
+      contrastText: '#ffffff',
     },
   },
   components: {

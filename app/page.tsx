@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import { OpenInNew } from '@mui/icons-material';
 import HeaderMenu from '@/components/header-menu/HeaderMenu';
 import Footer from '@/components/footer/Footer';
@@ -6,11 +6,12 @@ import Section from '@/components/section/Section';
 import Banner from '@/components/banner/Banner';
 import Principles from '@/components/principles/Principles';
 import Contact from '@/components/contact/Contact';
+import ChatWidget from '@/components/chat-widget/ChatWidget';
 import { MenuItem } from '@/types/Types';
 import { SITE } from '@/lib/site';
 
 const menuItems: MenuItem[] = [
-  { name: 'Għaliex', link: '#ghaliex' },
+  { name: 'L-Iskop', link: '#ghaliex' },
   { name: 'Prinċipji', link: '#principji' },
   { name: 'Ikkuntattjani', link: '#contact' },
 ];
@@ -22,47 +23,36 @@ export default function Home() {
       <main>
         <Banner />
 
-        {/* Why we need this — the practitioner's argument */}
+        {/* Why we need this — About-style header + prose on the left, principle cards on the right */}
         <Section id="ghaliex">
-          <Typography variant="h2" component="h2">
-            Għaliex għandna bżonn dan
-          </Typography>
-          <Box sx={{ maxWidth: '70ch' }}>
-            <Typography variant="body1">
-              Malta kibret malajr għal għaxar snin sħaħ, u issa d-diskussjoni qed timmatura: mhux
-              jekk nikbrux, imma kif nikbru tajjeb. Hemm frażi li qed tieħu l-art għal dan —
-              l-ekonomija tal-innovazzjoni — u fl-aħjar tagħha tfisser ħaġa sempliċi: ekonomija li
-              taħdem aħjar, mhux biss aktar.
-            </Typography>
-            <Typography variant="body1">
-              Ekonomija tal-innovazzjoni hija ekonomija tas-sistemi. Sistema tajba tkejjel
-              ir-riżultati tagħha, tippubblikahom, u titgħallem minnhom. Jekk irridu li s-settur
-              privat jaħdem fuq dawn il-prinċipji, l-ewwel post fejn nuruhom huwa kif taħdem
-              il-gvern innifsu.
-            </Typography>
-            <Typography variant="body1">
-              Fl-inġinerija tas-software, ma tibdiex tibni qabel ma tiddefinixxi l-problema. Imma
-              l-proġetti pubbliċi rari jibdew hekk: l-għan rari jiġi ppubblikat, u meta x-xogħol
-              jitlesta m&apos;hemmx parametru komuni li bih il-pubbliku jista&apos; jiġġudika jekk
-              irnexxiex. Dik hija &laquo;open loop&raquo; — mingħajr għan definit u mod kif
-              tiċċekkjah, sistema ma tistax titgħallem, u tirrepeti l-istess żbalji, perfettament
-              legalment.
-            </Typography>
-            <Typography variant="body1">
-              Din il-pjattaforma tagħlaq dak iċ-ċirku. Tagħmel viżibbli x&apos;qed jinbena,
-              tippermetti liċ-ċittadini jgħidu tagħhom waqt li għadu jiswa, u tiġbor ir-riskji u
-              l-feedback f&apos;post wieħed — minflok formola tal-FOI, stennija, u tama.
-            </Typography>
-          </Box>
-        </Section>
-
-        {/* The four principles */}
-        <Section variant="muted">
-          <Principles />
+          <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: 'center' }}>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Typography variant="h2" component="h2">
+                L-Iskop
+              </Typography>
+              <Box sx={{ maxWidth: '60ch' }}>
+                <Typography variant="body1" color="text.primary">
+                  L-ekonomija tal-innovazzjoni hija ekonomija tas-sistemi: sistema tajba tkejjel
+                  ir-riżultati tagħha, tippubblikahom, u titgħallem minnhom. Imma l-proġetti pubbliċi
+                  rari jibdew billi jiddefinixxu l-problema jew jippubblikaw l-għan tagħhom — u
+                  mingħajr parametru li bih wieħed jiġġudikahom, isiru &laquo;open loop&raquo; li
+                  jirrepeti l-istess żbalji, perfettament legalment.
+                </Typography>
+                <Typography variant="body1" color="text.primary" sx={{ mb: 0 }}>
+                  Din il-pjattaforma tagħlaq dak iċ-ċirku: tagħmel viżibbli x&apos;qed jinbena,
+                  tippermetti liċ-ċittadini jgħidu tagħhom waqt li għadu jiswa, u tiġbor ir-riskji u
+                  l-feedback f&apos;post wieħed — minflok formola tal-FOI, stennija, u tama.
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }} id="principji">
+              <Principles />
+            </Grid>
+          </Grid>
         </Section>
 
         {/* Call to action into the app */}
-        <Section>
+        <Section variant="muted">
           <Box sx={{ textAlign: 'center', maxWidth: '60ch', mx: 'auto' }}>
             <Typography variant="h2" component="h2" sx={{ textAlign: 'center' }}>
               Ipprova l-pjattaforma
@@ -74,17 +64,18 @@ export default function Home() {
             </Typography>
             <Button
               variant="contained"
+              color="accent"
               size="large"
               href={SITE.appPath}
               sx={{ mt: 2, px: 4, py: 1.25 }}
             >
-              Iftaħ l-Applikazzjoni
+              Iftaħ l-App
             </Button>
           </Box>
         </Section>
 
         {/* About the author + link to main profile */}
-        <Section variant="muted">
+        <Section>
           <Box sx={{ maxWidth: '70ch' }}>
             <Typography variant="h2" component="h2">
               Min jien
@@ -109,11 +100,12 @@ export default function Home() {
         </Section>
 
         {/* Contact */}
-        <Section>
+        <Section variant="muted">
           <Contact />
         </Section>
       </main>
       <Footer />
+      <ChatWidget />
     </>
   );
 }

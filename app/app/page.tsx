@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import ChatWidget from '@/components/chat-widget/ChatWidget';
 
 // The feedback app is a self-contained client-side SPA (state-based navigation,
 // canvas map, no SSR needs). Load it client-only to avoid server-rendering
@@ -55,6 +56,9 @@ export default function FeedbackAppPage() {
         </a>
         <FeedbackApp />
       </div>
+      {/* Rendered outside the framed app (no transformed ancestor) so it stays
+          fixed to the viewport corner, just like on the home page. */}
+      <ChatWidget />
     </div>
   );
 }
