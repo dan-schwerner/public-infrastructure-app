@@ -1,15 +1,21 @@
 import { Box, Button, Container, Typography } from '@mui/material';
+import Image from 'next/image';
 import { SITE } from '@/lib/site';
+import bannerBg from '@/lib/AAA_ApplicationBackground.png';
 
-// Three-tier hierarchy on the blue hero: a small uppercase eyebrow, the large
-// headline, then a medium supporting line — plus a single white CTA.
+// Three-tier hierarchy over a full-bleed background photo: a small uppercase
+// eyebrow, the large headline, then a medium supporting line — plus the coral
+// CTA. A black gradient (darker on the left) keeps the white copy legible,
+// mirroring the df-portfolio banner treatment.
 const Banner = () => {
   return (
     <Box
       id="il-bidu"
       sx={{
+        position: 'relative',
         width: '100%',
-        bgcolor: 'primary.main',
+        overflow: 'hidden',
+        bgcolor: '#1a1a1a', // fallback behind the image
         paddingTop: '8rem',
         paddingBottom: { xs: '4rem', md: '6rem' },
         paddingRight: '1rem',
@@ -17,7 +23,28 @@ const Banner = () => {
         boxSizing: 'border-box',
       }}
     >
-      <Container maxWidth="lg">
+      {/* Background photo — `cover` fits it neatly whatever the banner size.
+          next/image serves it optimised (AVIF/WebP, responsive). */}
+      <Image
+        src={bannerBg}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        style={{ objectFit: 'cover', objectPosition: 'center', zIndex: 0 }}
+      />
+      {/* Black gradient overlay, darker on the left so the white copy stays legible. */}
+      <Box
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+          background:
+            'linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.78) 55%, rgba(0,0,0,0.62) 100%)',
+        }}
+      />
+
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
         <Typography
           sx={{
             color: 'rgba(255,255,255,0.85)',

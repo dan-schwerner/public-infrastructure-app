@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Box, Fab, Paper, Typography, IconButton } from '@mui/material';
-import { ChatOutlined, Close } from '@mui/icons-material';
+import { ChatBubbleOutlined, Close } from '@mui/icons-material';
 import ContactForm from '@/components/contact/ContactForm';
 
 // Floating chat-bubble contact form. The bubble sits bottom-right; clicking it
@@ -62,7 +62,7 @@ export default function ChatWidget() {
       )}
 
       <Fab color="primary" aria-label="ikkuntattjani" onClick={() => setOpen((o) => !o)}>
-        {open ? <Close /> : <ChatOutlined />}
+        {open ? <Close /> : <ChatBubbleOutlined />}
       </Fab>
     </Box>
   );

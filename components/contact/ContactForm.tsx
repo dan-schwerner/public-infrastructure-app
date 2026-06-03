@@ -112,7 +112,7 @@ const ContactForm = ({ bare = false }: ContactFormProps) => {
         <Button
           type="submit"
           variant="contained"
-          color="accent"
+          color="primary"
           size="large"
           sx={{ py: 1.25 }}
           disabled={submitting}

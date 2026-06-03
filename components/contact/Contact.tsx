@@ -1,5 +1,5 @@
 import { Button, Grid, Stack, Typography } from '@mui/material';
-import { LinkedIn, GitHub, EmailOutlined } from '@mui/icons-material';
+import { LinkedIn, EmailOutlined } from '@mui/icons-material';
 import ContactForm from './ContactForm';
 import { SITE } from '@/lib/site';
 
@@ -33,16 +33,12 @@ const Contact = () => {
           <Button
             variant="outlined"
             startIcon={<LinkedIn />}
+            href="https://www.linkedin.com/in/dan-falzon26/"
+            target="_blank"
+            rel="noopener noreferrer"
             sx={{ justifyContent: 'flex-start', py: 1.25, color: 'text.primary', borderColor: 'divider' }}
           >
             LinkedIn
-          </Button>
-          <Button
-            variant="outlined"
-            startIcon={<GitHub />}
-            sx={{ justifyContent: 'flex-start', py: 1.25, color: 'text.primary', borderColor: 'divider' }}
-          >
-            GitHub
           </Button>
         </Stack>
       </Grid>
