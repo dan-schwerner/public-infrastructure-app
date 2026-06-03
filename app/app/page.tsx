@@ -28,6 +28,11 @@ export default function FeedbackAppPage() {
           background: '#ffffff',
           boxShadow: '0 0 40px rgba(0, 0, 0, 0.08)',
           overflow: 'hidden',
+          // A non-`none` transform makes this frame the containing block for
+          // `position: fixed` descendants. The feedback app's detail screens
+          // (and any dialog/sheet) use `fixed inset-0`, so without this they'd
+          // escape to the full viewport; this keeps every screen inside the frame.
+          transform: 'translateZ(0)',
         }}
       >
         <a
