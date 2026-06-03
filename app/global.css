@@ -1,0 +1,18 @@
+body {
+    margin: 0px !important;
+    /* Site-wide base typeface. This rule is unlayered, so it wins over the
+       Tailwind preflight (which lives in @layer base) on the /app route —
+       giving the feedback app the same Raleway as the MUI homepage. */
+    font-family: var(--font-raleway), ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Offset anchor scrolling so targets aren't hidden behind the fixed 5rem header. */
+    scroll-padding-top: 6rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
