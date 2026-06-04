@@ -25,7 +25,7 @@ const principles: Principle[] = [
   {
     title: 'L-utent fl-ewwel post',
     Icon: GroupsOutlined,
-    body: 'Kull sistema teżisti għan-nies li jużawha. Servizz tajjeb jibda min-nies u jaħdem lura — mhux mil-loġika interna tad-dipartiment.',
+    body: 'Kull sistema teżisti għan-nies li jużawha. Servizz tajjeb jibda min-nies u jaħdem lura, mhux mil-loġika interna tad-dipartiment.',
   },
   {
     title: 'Trasparenza fil-qalba',
@@ -33,7 +33,7 @@ const principles: Principle[] = [
     body: "Sistema li ma tistax tara fiha hija sistema li ma tistax tafda. Meta kif ittieħdet deċiżjoni jkun viżibbli b'mod awtomatiku, kulħadd jista' jiċċekkjah.",
   },
   {
-    title: 'Mibnija min-nies l-aħjar',
+    title: "Mibnija minn l'aqwa nies",
     Icon: VerifiedOutlined,
     body: "Il-kompetenza mhix lussu fix-xogħlijiet pubbliċi; hija d-differenza bejn xi ħaġa li sservi għal ġenerazzjoni u oħra li terġa' tinqala' fi ftit snin.",
   },
