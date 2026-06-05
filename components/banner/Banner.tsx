@@ -1,5 +1,6 @@
 import { Box, Button, Container, Typography } from '@mui/material';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { SITE } from '@/lib/site';
 import bannerBg from '@/lib/AAA_ApplicationBackground.png';
 
@@ -8,6 +9,8 @@ import bannerBg from '@/lib/AAA_ApplicationBackground.png';
 // CTA. A black gradient (darker on the left) keeps the white copy legible,
 // mirroring the df-portfolio banner treatment.
 const Banner = () => {
+  const t = useTranslations('banner');
+  const tn = useTranslations('nav');
   return (
     <Box
       id="il-bidu"
@@ -16,7 +19,7 @@ const Banner = () => {
         width: '100%',
         overflow: 'hidden',
         bgcolor: '#1a1a1a', // fallback behind the image
-        paddingTop: '8rem',
+        paddingTop: { xs: '6rem', md: '8rem' },
         paddingBottom: { xs: '4rem', md: '6rem' },
         paddingRight: '1rem',
         paddingLeft: '1rem',
@@ -54,16 +57,16 @@ const Banner = () => {
             mb: 2,
           }}
         >
-          Proġetti Qribek
+          {t('eyebrow')}
         </Typography>
         <Typography
           variant="h1"
           sx={{ fontSize: { xs: '2.8rem', md: '6rem' }, color: 'white', lineHeight: 1.05, m: 0 }}
         >
-          Ara x&apos;qed Jinbena
+          {t('headline')}
         </Typography>
         <Typography sx={{ fontSize: '1.6rem', color: 'white', marginTop: '1rem', mb: 0 }}>
-          Nibdew naċċertaw it-trasparenza
+          {t('subhead')}
         </Typography>
         <Button
           variant="contained"
@@ -77,7 +80,7 @@ const Banner = () => {
             fontWeight: 600,
           }}
         >
-          Iftaħ l-App
+          {tn('openApp')}
         </Button>
       </Container>
     </Box>

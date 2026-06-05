@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "title": "Infrastruttura Pubblika Miftuħa",
+    "description": "Pjattaforma fejn iċ-ċittadini jaraw il-proġetti ta' infrastruttura ħdejhom, jagħtu l-fehma tagħhom, u jirrapportaw ir-riskji. Trasparenza mibnija fil-qalba."
+  },
+  "appMetadata": {
+    "title": "Proġetti ta' Infrastruttura — App",
+    "description": "Ara l-proġetti ta' infrastruttura ħdejk, agħti l-feedback tiegħek, u rrapporta r-riskji."
+  },
+  "nav": {
+    "purpose": "L-Iskop",
+    "principles": "Prinċipji",
+    "contact": "Ikkuntattjani",
+    "openApp": "Iftaħ l-App"
+  },
+  "a11y": {
+    "openMenu": "iftaħ il-menu"
+  },
+  "banner": {
+    "eyebrow": "Proġetti Qribek",
+    "headline": "Ara x'qed Jinbena",
+    "subhead": "Nibdew naċċertaw it-trasparenza"
+  },
+  "home": {
+    "purposeHeading": "L-Iskop",
+    "purposeBody1": "L-ekonomija tal-innovazzjoni hija ekonomija tas-sistemi: sistema tajba tkejjel ir-riżultati tagħha, tippubblikahom, u titgħallem minnhom. Imma l-proġetti pubbliċi rari jibdew billi jiddefinixxu l-problema jew jippubblikaw l-għan tagħhom — u mingħajr parametru li bih wieħed jiġġudikahom, isiru «open loop» li jirrepeti l-istess żbalji, perfettament legalment.",
+    "purposeBody2": "Din il-pjattaforma tagħlaq dak iċ-ċirku: tagħmel viżibbli x'qed jinbena, tippermetti liċ-ċittadini jgħidu tagħhom waqt li għadu jiswa, u tiġbor ir-riskji u l-feedback f'post wieħed — minflok formola tal-FOI, stennija, u tama.",
+    "tryHeading": "Ipprova l-pjattaforma",
+    "tryBody": "Ara kif tista' tidher l-infrastruttura pubblika meta tkun miftuħa b'mod awtomatiku: proġetti attivi u lesti, feedback miċ-ċittadini, u rapporti tar-riskji — kollox f'post wieħed.",
+    "aboutHeading": "Min jien",
+    "aboutBody": "Jien Daniel Falzon, software engineer b'għaxar snin esperjenza nibni sistemi. Din il-pjattaforma hija parti minn sensiela ta' kitbiet dwar kif Malta — żgħira biżżejjed biex titmexxa tajjeb — tista' tibni l-affarijiet tagħha b'dixxiplina, trasparenza u attenzjoni.",
+    "visitProfile": "Żur il-profil prinċipali tiegħi"
+  },
+  "principles": {
+    "label": "Il-Prinċipji",
+    "userFirstTitle": "L-utent fl-ewwel post",
+    "userFirstBody": "Kull sistema teżisti għan-nies li jużawha. Servizz tajjeb jibda min-nies u jaħdem lura, mhux mil-loġika interna tad-dipartiment.",
+    "transparencyTitle": "Trasparenza fil-qalba",
+    "transparencyBody": "Sistema li ma tistax tara fiha hija sistema li ma tistax tafda. Meta kif ittieħdet deċiżjoni jkun viżibbli b'mod awtomatiku, kulħadd jista' jiċċekkjah.",
+    "bestPeopleTitle": "Mibnija minn l'aqwa nies",
+    "bestPeopleBody": "Il-kompetenza mhix lussu fix-xogħlijiet pubbliċi; hija d-differenza bejn xi ħaġa li sservi għal ġenerazzjoni u oħra li terġa' tinqala' fi ftit snin.",
+    "growTalentTitle": "Tkabbar it-talent Malti",
+    "growTalentBody": "Meta s-settur pubbliku jinvesti fil-kapaċità, isaħħaħ il-kumpaniji, l-inġiniera u l-ħiliet li għandna d-dar minflok jimpurtahom għal dejjem."
+  },
+  "contact": {
+    "heading": "Ikkuntattjani",
+    "intro": "Tixtieq titkellem dwar dan il-proġett, tikkollabora, jew tikkummenta fuq xi blog post tiegħi? Tiddejjaqx tikkuntattjani!",
+    "linkedin": "LinkedIn"
+  },
+  "contactForm": {
+    "name": "Isem",
+    "email": "Email",
+    "subject": "Suġġett",
+    "message": "Messaġġ",
+    "submit": "Ibgħat",
+    "submitting": "Qed jintbagħat…",
+    "invalidEmail": "Daħħal indirizz email validu.",
+    "successTitle": "Grazzi talli ġejt f'kuntatt!",
+    "successBody": "Se nwieġeb malajr kemm jista' jkun.",
+    "toast": "Il-messaġġ intbagħat — grazzi!",
+    "error": "Xi ħaġa marret ħażin. Erġa' pprova."
+  },
+  "chatWidget": {
+    "title": "Ikkuntattjani",
+    "subtitle": "Ibgħatli messaġġ malajr",
+    "close": "agħlaq",
+    "open": "ikkuntattjani"
+  },
+  "appShell": {
+    "mockNotice": "⚠️ Dejta ta' prova — din mhix relatata ma' ebda proġett reali.",
+    "back": "← Lura"
+  },
+  "feedback": {
+    "headerTitle": "Proġetti ta' Infrastruttura",
+    "searchPlaceholder": "Fittex proġetti skont il-lokalità…",
+    "tabs": { "active": "Proġetti Attivi", "completed": "Lesti" },
+    "filters": { "all": "Kollha", "planned": "Ippjanat", "inProgress": "Għaddej" },
+    "view": { "list": "Lista", "map": "Mappa" },
+    "nearYou": "{count, plural, =1 {# proġett attiv qribek} other {# proġetti attivi qribek}}",
+    "completedCount": "{count, plural, =1 {# proġett lest} other {# proġetti lesti}}",
+    "status": { "planned": "ippjanat", "in-progress": "għaddej", "completed": "lest" },
+    "card": {
+      "risksReported": "{count, plural, =1 {# riskju attiv irrapportat} other {# riskji attivi rrapportati}}",
+      "feedbackSubmissions": "{count, plural, =1 {# sottomissjoni ta' feedback mill-komunità} other {# sottomissjonijiet ta' feedback mill-komunità}}",
+      "completedOn": "Tlestiet {date}",
+      "ratings": "{count, plural, =1 {# klassifikazzjoni} other {# klassifikazzjonijiet}}",
+      "youRated": "Ivvutajt: {rating}★",
+      "completedBadge": "Lest"
+    },
+    "kinds": { "concern": "Tħassib", "suggestion": "Suġġeriment", "opinion": "Opinjoni" },
+    "severity": {
+      "low": "Baxx",
+      "medium": "Medju",
+      "high": "Għoli",
+      "lowLabel": "Severità Baxxa",
+      "mediumLabel": "Severità Medja",
+      "highLabel": "Severità Għolja"
+    },
+    "details": {
+      "description": "Deskrizzjoni",
+      "location": "Post",
+      "distanceFromYou": "{distance} minnek",
+      "timeline": "Skeda",
+      "budget": "Baġit",
+      "contractor": "Kuntrattur",
+      "tabs": { "details": "Dettalji", "feedback": "Feedback", "risks": "Riskji" },
+      "submitFeedbackHeading": "Ibgħat il-Feedback Tiegħek",
+      "feedbackIntro": "Aqsam it-tħassib, is-suġġerimenti, jew l-opinjonijiet tiegħek dwar dan il-proġett.",
+      "feedbackType": "Tip ta' Feedback",
+      "yourFeedbackLabel": "{kind} tiegħek",
+      "describePlaceholder": "Iddeskrivi {kind}…",
+      "submitFeedback": "Ibgħat il-Feedback",
+      "submitted": "✓ Mibgħut!",
+      "recentFeedback": "Feedback Reċenti ({count})",
+      "reportRiskHeading": "Irrapporta Riskju Attiv",
+      "riskIntro": "Immarka kwalunkwe tħassib dwar is-sigurtà jew riskji li tosserva fis-sit tal-proġett.",
+      "riskSeverity": "Severità tar-Riskju",
+      "riskDescription": "Deskrizzjoni tar-Riskju",
+      "riskPlaceholder": "Iddeskrivi r-riskju jew it-tħassib dwar is-sigurtà…",
+      "reportRisk": "Irrapporta Riskju",
+      "riskReported": "✓ Riskju Rrapportat!",
+      "activeRisks": "Riskji Attivi ({count})"
+    },
+    "completedDetails": {
+      "tabs": { "details": "Dettalji", "ratings": "Klassifikazzjonijiet u Reviżjonijiet" },
+      "completedBadge": "Lest",
+      "completedLabel": "Tlestiet",
+      "overallRating": "Klassifikazzjoni Ġenerali",
+      "totalRatings": "Total Klassifikazzjonijiet",
+      "rateThis": "Ikklassifika dan il-Proġett",
+      "yourRating": "Il-Klassifikazzjoni Tiegħek",
+      "outOfStars": "{rating} minn 5 stilel",
+      "yourReview": "Ir-Reviżjoni Tiegħek (Mhux Obbligatorja)",
+      "reviewPlaceholder": "Aqsam il-ħsibijiet tiegħek dwar dan il-proġett lest…",
+      "submitRating": "Ibgħat il-Klassifikazzjoni",
+      "ratingSubmitted": "✓ Klassifikazzjoni Mibgħuta!",
+      "ratingDistribution": "Distribuzzjoni tal-Klassifikazzjoni",
+      "recentReviews": "Reviżjonijiet Reċenti"
+    },
+    "map": {
+      "youAreHere": "Inti hawn",
+      "legend": "Leġġenda",
+      "planned": "Ippjanat",
+      "inProgress": "Għaddej",
+      "completed": "Lest"
+    }
+  },
+  "localeSwitcher": {
+    "label": "Lingwa",
+    "mt": "Bil-Malti",
+    "en": "Bl-Ingliż"
+  },
+  "contactApi": {
+    "invalidRequest": "Talba invalida.",
+    "invalidEmail": "Daħħal email valida.",
+    "emptyMessage": "Ikteb messaġġ.",
+    "notConfigured": "Is-servizz tal-email għadu mhux ikkonfigurat.",
+    "sendFailed": "Ma rnexxilniex nibagħtu l-messaġġ. Erġa' pprova."
+  }
+}

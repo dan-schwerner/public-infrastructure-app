@@ -10,10 +10,11 @@ import {
   RocketLaunchOutlined,
 } from '@mui/icons-material';
 import type { SvgIconComponent } from '@mui/icons-material';
+import { useTranslations } from 'next-intl';
 
 type Principle = {
-  title: string;
-  body: string;
+  /** Translation key prefix; titles/bodies live under principles.<key>Title / <key>Body. */
+  key: string;
   Icon: SvgIconComponent;
 };
 
@@ -22,32 +23,17 @@ type Principle = {
 const VALUE_COLORS = ['#4961b0', '#2a9d8f', '#e9a23b', '#d1495b'];
 
 const principles: Principle[] = [
-  {
-    title: 'L-utent fl-ewwel post',
-    Icon: GroupsOutlined,
-    body: 'Kull sistema teżisti għan-nies li jużawha. Servizz tajjeb jibda min-nies u jaħdem lura, mhux mil-loġika interna tad-dipartiment.',
-  },
-  {
-    title: 'Trasparenza fil-qalba',
-    Icon: VisibilityOutlined,
-    body: "Sistema li ma tistax tara fiha hija sistema li ma tistax tafda. Meta kif ittieħdet deċiżjoni jkun viżibbli b'mod awtomatiku, kulħadd jista' jiċċekkjah.",
-  },
-  {
-    title: "Mibnija minn l'aqwa nies",
-    Icon: VerifiedOutlined,
-    body: "Il-kompetenza mhix lussu fix-xogħlijiet pubbliċi; hija d-differenza bejn xi ħaġa li sservi għal ġenerazzjoni u oħra li terġa' tinqala' fi ftit snin.",
-  },
-  {
-    title: 'Tkabbar it-talent Malti',
-    Icon: RocketLaunchOutlined,
-    body: "Meta s-settur pubbliku jinvesti fil-kapaċità, isaħħaħ il-kumpaniji, l-inġiniera u l-ħiliet li għandna d-dar minflok jimpurtahom għal dejjem.",
-  },
+  { key: 'userFirst', Icon: GroupsOutlined },
+  { key: 'transparency', Icon: VisibilityOutlined },
+  { key: 'bestPeople', Icon: VerifiedOutlined },
+  { key: 'growTalent', Icon: RocketLaunchOutlined },
 ];
 
 // The four principles as compact, click-to-expand cards — same pattern as the
 // df-portfolio About "values" column. Each card shows only its icon + title;
 // clicking reveals the description. Accordion-style: opening one closes the others.
 const Principles = () => {
+  const t = useTranslations('principles');
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -62,14 +48,14 @@ const Principles = () => {
           mb: 2,
         }}
       >
-        Il-Prinċipji
+        {t('label')}
       </Typography>
       <Stack spacing={1.5}>
         {principles.map((p, index) => {
           const { Icon } = p;
           const open = openIndex === index;
           return (
-            <Card key={p.title} variant="outlined" sx={{ borderRadius: 2 }}>
+            <Card key={p.key} variant="outlined" sx={{ borderRadius: 2 }}>
               <CardActionArea
                 onClick={() => setOpenIndex(open ? null : index)}
                 aria-expanded={open}
@@ -94,7 +80,7 @@ const Principles = () => {
                     component="h3"
                     sx={{ fontSize: '1.05rem', fontWeight: 700, flex: 1, mb: 0 }}
                   >
-                    {p.title}
+                    {t(`${p.key}Title`)}
                   </Typography>
                   <ExpandMore
                     sx={{
@@ -108,7 +94,7 @@ const Principles = () => {
                 <Collapse in={open} unmountOnExit>
                   <Box sx={{ px: { xs: 2, md: 2.5 }, pb: 2, pt: 0 }}>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 0 }}>
-                      {p.body}
+                      {t(`${p.key}Body`)}
                     </Typography>
                   </Box>
                 </Collapse>

@@ -7,19 +7,15 @@ import Banner from '@/components/banner/Banner';
 import Principles from '@/components/principles/Principles';
 import Contact from '@/components/contact/Contact';
 import ChatWidget from '@/components/chat-widget/ChatWidget';
-import { MenuItem } from '@/types/Types';
+import { useTranslations } from 'next-intl';
 import { SITE } from '@/lib/site';
 
-const menuItems: MenuItem[] = [
-  { name: 'L-Iskop', link: '#ghaliex' },
-  { name: 'Prinċipji', link: '#principji' },
-  { name: 'Ikkuntattjani', link: '#contact' },
-];
-
 export default function Home() {
+  const t = useTranslations('home');
+  const tn = useTranslations('nav');
   return (
     <>
-      <HeaderMenu menuItems={menuItems} />
+      <HeaderMenu />
       <main>
         <Banner />
 
@@ -28,20 +24,14 @@ export default function Home() {
           <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: 'center' }}>
             <Grid size={{ xs: 12, md: 6 }}>
               <Typography variant="h2" component="h2">
-                L-Iskop
+                {t('purposeHeading')}
               </Typography>
               <Box sx={{ maxWidth: '60ch' }}>
                 <Typography variant="body1" color="text.primary">
-                  L-ekonomija tal-innovazzjoni hija ekonomija tas-sistemi: sistema tajba tkejjel
-                  ir-riżultati tagħha, tippubblikahom, u titgħallem minnhom. Imma l-proġetti pubbliċi
-                  rari jibdew billi jiddefinixxu l-problema jew jippubblikaw l-għan tagħhom — u
-                  mingħajr parametru li bih wieħed jiġġudikahom, isiru &laquo;open loop&raquo; li
-                  jirrepeti l-istess żbalji, perfettament legalment.
+                  {t('purposeBody1')}
                 </Typography>
                 <Typography variant="body1" color="text.primary" sx={{ mb: 0 }}>
-                  Din il-pjattaforma tagħlaq dak iċ-ċirku: tagħmel viżibbli x&apos;qed jinbena,
-                  tippermetti liċ-ċittadini jgħidu tagħhom waqt li għadu jiswa, u tiġbor ir-riskji u
-                  l-feedback f&apos;post wieħed — minflok formola tal-FOI, stennija, u tama.
+                  {t('purposeBody2')}
                 </Typography>
               </Box>
             </Grid>
@@ -55,12 +45,10 @@ export default function Home() {
         <Section variant="muted">
           <Box sx={{ textAlign: 'center', maxWidth: '60ch', mx: 'auto' }}>
             <Typography variant="h2" component="h2" sx={{ textAlign: 'center' }}>
-              Ipprova l-pjattaforma
+              {t('tryHeading')}
             </Typography>
             <Typography variant="body1">
-              Ara kif tista&apos; tidher l-infrastruttura pubblika meta tkun miftuħa b&apos;mod
-              awtomatiku: proġetti attivi u lesti, feedback miċ-ċittadini, u rapporti tar-riskji —
-              kollox f&apos;post wieħed.
+              {t('tryBody')}
             </Typography>
             <Button
               variant="contained"
@@ -69,7 +57,7 @@ export default function Home() {
               href={SITE.appPath}
               sx={{ mt: 2, px: 4, py: 1.25 }}
             >
-              Iftaħ l-App
+              {tn('openApp')}
             </Button>
           </Box>
         </Section>
@@ -78,13 +66,10 @@ export default function Home() {
         <Section>
           <Box sx={{ maxWidth: '70ch' }}>
             <Typography variant="h2" component="h2">
-              Min jien
+              {t('aboutHeading')}
             </Typography>
             <Typography variant="body1">
-              Jien Daniel Falzon, software engineer b&apos;għaxar snin esperjenza nibni sistemi. Din
-              il-pjattaforma hija parti minn sensiela ta&apos; kitbiet dwar kif Malta — żgħira
-              biżżejjed biex titmexxa tajjeb — tista&apos; tibni l-affarijiet tagħha
-              b&apos;dixxiplina, trasparenza u attenzjoni.
+              {t('aboutBody')}
             </Typography>
             <Button
               variant="outlined"
@@ -94,7 +79,7 @@ export default function Home() {
               rel="noopener noreferrer"
               sx={{ mt: 1 }}
             >
-              Żur il-profil prinċipali tiegħi
+              {t('visitProfile')}
             </Button>
           </Box>
         </Section>

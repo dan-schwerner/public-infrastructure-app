@@ -1,22 +1,15 @@
 import { MapPin, Calendar, AlertTriangle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import type { Project } from '../data/mockData';
 
 interface ProjectCardProps {
-  project: {
-    id: string;
-    title: string;
-    description: string;
-    location: string;
-    distance: string;
-    status: 'planned' | 'in-progress' | 'completed';
-    startDate: string;
-    endDate: string;
-    riskCount: number;
-    feedbackCount: number;
-  };
+  project: Project;
   onClick: () => void;
 }
 
 export function ProjectCard({ project, onClick }: ProjectCardProps) {
+  const t = useTranslations('feedback');
+
   const statusColors = {
     planned: 'bg-blue-100 text-blue-800',
     'in-progress': 'bg-amber-100 text-amber-800',
@@ -31,7 +24,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
       <div className="flex justify-between items-start mb-3">
         <h3 className="flex-1 pr-2">{project.title}</h3>
         <span className={`px-2 py-1 rounded-full text-xs ${statusColors[project.status]}`}>
-          {project.status.replace('-', ' ')}
+          {t(`status.${project.status}`)}
         </span>
       </div>
 
@@ -53,13 +46,13 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
         {project.riskCount > 0 && (
           <div className="flex items-center gap-2 text-destructive">
             <AlertTriangle className="w-4 h-4" />
-            <span>{project.riskCount} active risk{project.riskCount !== 1 ? 's' : ''} reported</span>
+            <span>{t('card.risksReported', { count: project.riskCount })}</span>
           </div>
         )}
       </div>
 
       <div className="mt-3 pt-3 border-t border-border text-xs text-muted-foreground">
-        {project.feedbackCount} community feedback submission{project.feedbackCount !== 1 ? 's' : ''}
+        {t('card.feedbackSubmissions', { count: project.feedbackCount })}
       </div>
     </div>
   );

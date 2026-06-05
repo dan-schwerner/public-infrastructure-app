@@ -1,7 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { useTranslations } from 'next-intl';
 import ChatWidget from '@/components/chat-widget/ChatWidget';
+import LocaleSwitcher from '@/components/locale-switcher/LocaleSwitcher';
 
 // The feedback app is a self-contained client-side SPA (state-based navigation,
 // Leaflet map, no SSR needs). Load it client-only to avoid server-rendering
@@ -9,6 +11,7 @@ import ChatWidget from '@/components/chat-widget/ChatWidget';
 const FeedbackApp = dynamic(() => import('../../src/feedback-app/App'), { ssr: false });
 
 export default function FeedbackAppPage() {
+  const t = useTranslations('appShell');
   return (
     // Outer: full-viewport neutral backdrop. Inner: a centred, max-width frame so
     // the mobile-first feedback app doesn't stretch across the whole screen.
@@ -45,7 +48,7 @@ export default function FeedbackAppPage() {
             flexShrink: 0,
           }}
         >
-          ⚠️ Dejta ta&apos; prova — din mhix relatata ma&apos; ebda proġett reali.
+          {t('mockNotice')}
         </div>
 
         {/* App area: the containing block for the feedback app's `fixed inset-0`
@@ -59,24 +62,45 @@ export default function FeedbackAppPage() {
             transform: 'translateZ(0)',
           }}
         >
-          <a
-            href="/"
+          {/* Top-right cluster: language toggle + back link, over the framed app. */}
+          <div
             style={{
               position: 'absolute',
               top: 8,
               right: 8,
               zIndex: 50,
-              background: 'rgba(255, 255, 255, 0.92)',
-              border: '1px solid rgba(0, 0, 0, 0.1)',
-              borderRadius: 8,
-              padding: '6px 12px',
-              fontSize: 14,
-              color: '#030213',
-              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
             }}
           >
-            ← Lura
-          </a>
+            <div
+              style={{
+                background: 'rgba(255, 255, 255, 0.92)',
+                border: '1px solid rgba(0, 0, 0, 0.1)',
+                borderRadius: 8,
+                padding: '5px 7px',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <LocaleSwitcher ringColor="rgba(0, 0, 0, 0.55)" />
+            </div>
+            <a
+              href="/"
+              style={{
+                background: 'rgba(255, 255, 255, 0.92)',
+                border: '1px solid rgba(0, 0, 0, 0.1)',
+                borderRadius: 8,
+                padding: '6px 12px',
+                fontSize: 14,
+                color: '#030213',
+                textDecoration: 'none',
+              }}
+            >
+              {t('back')}
+            </a>
+          </div>
           <FeedbackApp />
         </div>
       </div>

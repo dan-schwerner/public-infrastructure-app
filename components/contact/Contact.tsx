@@ -1,19 +1,20 @@
 import { Button, Grid, Stack, Typography } from '@mui/material';
 import { LinkedIn, EmailOutlined } from '@mui/icons-material';
+import { useTranslations } from 'next-intl';
 import ContactForm from './ContactForm';
 import { SITE } from '@/lib/site';
 
 const Contact = () => {
+  const t = useTranslations('contact');
   return (
     <Grid container spacing={{ xs: 4, md: 6 }} sx={{ alignItems: 'flex-start' }}>
       {/* Left: heading, intro, contact links */}
       <Grid size={{ xs: 12, md: 5 }}>
         <Typography variant="h2" component="h2" id="contact">
-          Ikkuntattjani
+          {t('heading')}
         </Typography>
         <Typography variant="body1" sx={{ mb: 3 }}>
-          Tixtieq titkellem dwar dan il-proġett, tikkollabora, jew tikkummenta fuq xi blog post
-          tiegħi? Tiddejjaqx tikkuntattjani!
+          {t('intro')}
         </Typography>
         <Stack spacing={2} sx={{ maxWidth: 360 }}>
           <Button

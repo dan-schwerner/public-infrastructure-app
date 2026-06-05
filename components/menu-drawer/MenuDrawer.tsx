@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { MenuItem } from '@/types/Types';
 import { FC } from 'react';
+import { useTranslations } from 'next-intl';
 import { SITE } from '@/lib/site';
 
 type HandleClose = () => void;
@@ -22,6 +23,7 @@ type MenuDrawerProps = {
 };
 
 const MenuDrawer: FC<MenuDrawerProps> = ({ enabled, callback, menuItems }) => {
+  const t = useTranslations('nav');
   return (
     <Drawer
       variant="temporary"
@@ -32,7 +34,7 @@ const MenuDrawer: FC<MenuDrawerProps> = ({ enabled, callback, menuItems }) => {
       }}
       sx={{
         display: { xs: 'block', sm: 'none' },
-        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '100vw', top: '5rem' },
+        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '100vw', top: { xs: '3.5rem', sm: '5rem' } },
       }}
     >
       <Box onClick={callback} sx={{ textAlign: 'center' }}>
@@ -51,7 +53,7 @@ const MenuDrawer: FC<MenuDrawerProps> = ({ enabled, callback, menuItems }) => {
         </List>
         <Box sx={{ px: 2, pb: 3 }}>
           <Button fullWidth variant="contained" color="accent" href={SITE.appPath}>
-            Iftaħ l-App
+            {t('openApp')}
           </Button>
         </Box>
       </Box>

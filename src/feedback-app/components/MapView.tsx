@@ -1,17 +1,8 @@
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Tooltip, CircleMarker } from 'react-leaflet';
-
-interface Project {
-  id: string;
-  title: string;
-  location: string;
-  distance: string;
-  status: 'planned' | 'in-progress' | 'completed';
-  riskCount: number;
-  lat: number;
-  lng: number;
-}
+import { useTranslations } from 'next-intl';
+import type { Project } from '../data/mockData';
 
 interface MapViewProps {
   projects: Project[];
@@ -49,6 +40,7 @@ function pinIcon(color: string, riskCount: number) {
 }
 
 export function MapView({ projects, onProjectClick }: MapViewProps) {
+  const t = useTranslations('feedback');
   return (
     <div className="relative w-full h-full rounded-lg overflow-hidden border border-border">
       <MapContainer
@@ -68,7 +60,7 @@ export function MapView({ projects, onProjectClick }: MapViewProps) {
           radius={8}
           pathOptions={{ color: '#ffffff', weight: 3, fillColor: '#2563eb', fillOpacity: 1 }}
         >
-          <Tooltip>Inti hawn</Tooltip>
+          <Tooltip>{t('map.youAreHere')}</Tooltip>
         </CircleMarker>
 
         {/* Project markers */}
@@ -86,18 +78,18 @@ export function MapView({ projects, onProjectClick }: MapViewProps) {
 
       {/* Legend */}
       <div className="absolute bottom-4 left-4 z-[1000] bg-background border border-border rounded-lg p-3 shadow-lg text-xs space-y-2">
-        <div className="font-medium mb-1">Leġġenda</div>
+        <div className="font-medium mb-1">{t('map.legend')}</div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full" style={{ backgroundColor: statusColors.planned }} />
-          <span>Ippjanat</span>
+          <span>{t('map.planned')}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full" style={{ backgroundColor: statusColors['in-progress'] }} />
-          <span>Għaddej</span>
+          <span>{t('map.inProgress')}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full" style={{ backgroundColor: statusColors.completed }} />
-          <span>Lest</span>
+          <span>{t('map.completed')}</span>
         </div>
       </div>
     </div>

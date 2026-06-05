@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import { Box, Fab, Paper, Typography, IconButton } from '@mui/material';
 import { ChatBubbleOutlined, Close } from '@mui/icons-material';
+import { useTranslations } from 'next-intl';
 import ContactForm from '@/components/contact/ContactForm';
 
 // Floating chat-bubble contact form. The bubble sits bottom-right; clicking it
 // opens a compact panel with the shared ContactForm (sends via /api/contact).
 export default function ChatWidget() {
+  const t = useTranslations('chatWidget');
   const [open, setOpen] = useState(false);
 
   return (
@@ -40,14 +42,14 @@ export default function ChatWidget() {
             }}
           >
             <Box>
-              <Typography sx={{ fontWeight: 700, mb: 0 }}>Ikkuntattjani</Typography>
+              <Typography sx={{ fontWeight: 700, mb: 0 }}>{t('title')}</Typography>
               <Typography variant="body2" sx={{ opacity: 0.85, mb: 0 }}>
-                Ibgħatli messaġġ malajr
+                {t('subtitle')}
               </Typography>
             </Box>
             <IconButton
               size="small"
-              aria-label="agħlaq"
+              aria-label={t('close')}
               onClick={() => setOpen(false)}
               sx={{ color: '#fff' }}
             >
@@ -61,7 +63,7 @@ export default function ChatWidget() {
         </Paper>
       )}
 
-      <Fab color="primary" aria-label="ikkuntattjani" onClick={() => setOpen((o) => !o)}>
+      <Fab color="primary" aria-label={t('open')} onClick={() => setOpen((o) => !o)}>
         {open ? <Close /> : <ChatBubbleOutlined />}
       </Fab>
     </Box>

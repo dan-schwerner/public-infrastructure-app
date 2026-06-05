@@ -1,20 +1,9 @@
-import { ArrowLeft, MapPin, Calendar, DollarSign, MessageSquare } from 'lucide-react';
+import { ArrowLeft, MapPin, Calendar } from 'lucide-react';
 import { useState } from 'react';
+import { useFormatter, useLocale, useTranslations } from 'next-intl';
 import { RatingStars } from './RatingStars';
-
-interface CompletedProject {
-  id: string;
-  title: string;
-  description: string;
-  location: string;
-  completedDate: string;
-  averageRating: number;
-  totalRatings: number;
-  budget: string;
-  contractor: string;
-  userRating?: number;
-  detailedDescription: string;
-}
+import { mockData, type CompletedProject } from '../data/mockData';
+import type { Locale } from '@/i18n/config';
 
 interface CompletedProjectDetailsProps {
   project: CompletedProject;
@@ -22,6 +11,11 @@ interface CompletedProjectDetailsProps {
 }
 
 export function CompletedProjectDetails({ project, onClose }: CompletedProjectDetailsProps) {
+  const t = useTranslations('feedback');
+  const format = useFormatter();
+  const locale = useLocale() as Locale;
+  const recentReviews = mockData.sampleReviews[locale];
+
   const [userRating, setUserRating] = useState(project.userRating || 0);
   const [reviewText, setReviewText] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -63,7 +57,7 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
                 : 'text-muted-foreground'
             }`}
           >
-            Details
+            {t('completedDetails.tabs.details')}
           </button>
           <button
             onClick={() => setActiveTab('ratings')}
@@ -73,7 +67,7 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
                 : 'text-muted-foreground'
             }`}
           >
-            Ratings & Reviews
+            {t('completedDetails.tabs.ratings')}
           </button>
         </div>
       </div>
@@ -83,12 +77,12 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
           <div className="space-y-4">
             <div>
               <span className="inline-block px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
-                Completed
+                {t('completedDetails.completedBadge')}
               </span>
             </div>
 
             <div>
-              <h4 className="mb-2">Description</h4>
+              <h4 className="mb-2">{t('details.description')}</h4>
               <p className="text-muted-foreground">{project.detailedDescription}</p>
             </div>
 
@@ -96,7 +90,7 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-muted-foreground mt-0.5" />
                 <div>
-                  <div className="text-sm text-muted-foreground">Location</div>
+                  <div className="text-sm text-muted-foreground">{t('details.location')}</div>
                   <div>{project.location}</div>
                 </div>
               </div>
@@ -104,7 +98,7 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
               <div className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-muted-foreground mt-0.5" />
                 <div>
-                  <div className="text-sm text-muted-foreground">Completed</div>
+                  <div className="text-sm text-muted-foreground">{t('completedDetails.completedLabel')}</div>
                   <div>{project.completedDate}</div>
                 </div>
               </div>
@@ -112,11 +106,11 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
 
             <div className="bg-muted rounded-lg p-4 space-y-2">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Budget</span>
+                <span className="text-muted-foreground">{t('details.budget')}</span>
                 <span>{project.budget}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Contractor</span>
+                <span className="text-muted-foreground">{t('details.contractor')}</span>
                 <span>{project.contractor}</span>
               </div>
             </div>
@@ -124,15 +118,17 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
               <div className="flex items-center justify-between mb-3">
                 <div>
-                  <div className="text-sm text-muted-foreground mb-1">Overall Rating</div>
+                  <div className="text-sm text-muted-foreground mb-1">{t('completedDetails.overallRating')}</div>
                   <div className="flex items-center gap-2">
                     <RatingStars rating={project.averageRating} size="lg" />
-                    <span className="text-xl">{project.averageRating.toFixed(1)}</span>
+                    <span className="text-xl">
+                      {format.number(project.averageRating, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+                    </span>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-sm text-muted-foreground">Total Ratings</div>
-                  <div className="text-xl">{project.totalRatings}</div>
+                  <div className="text-sm text-muted-foreground">{t('completedDetails.totalRatings')}</div>
+                  <div className="text-xl">{format.number(project.totalRatings)}</div>
                 </div>
               </div>
             </div>
@@ -143,10 +139,10 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
           <div className="space-y-6">
             {/* Rate this project */}
             <div>
-              <h4 className="mb-3">Rate This Project</h4>
+              <h4 className="mb-3">{t('completedDetails.rateThis')}</h4>
               <form onSubmit={handleRatingSubmit} className="space-y-4">
                 <div>
-                  <label className="block mb-2">Your Rating</label>
+                  <label className="block mb-2">{t('completedDetails.yourRating')}</label>
                   <div className="flex items-center gap-3">
                     <RatingStars
                       rating={userRating}
@@ -156,7 +152,7 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
                     />
                     {userRating > 0 && (
                       <span className="text-sm text-muted-foreground">
-                        {userRating} out of 5 stars
+                        {t('completedDetails.outOfStars', { rating: userRating })}
                       </span>
                     )}
                   </div>
@@ -164,14 +160,14 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
 
                 <div>
                   <label htmlFor="review" className="block mb-2">
-                    Your Review (Optional)
+                    {t('completedDetails.yourReview')}
                   </label>
                   <textarea
                     id="review"
                     value={reviewText}
                     onChange={(e) => setReviewText(e.target.value)}
                     className="w-full p-3 border border-border rounded-lg bg-input-background min-h-24 resize-none"
-                    placeholder="Share your thoughts about this completed project..."
+                    placeholder={t('completedDetails.reviewPlaceholder')}
                   />
                 </div>
 
@@ -180,14 +176,14 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
                   className="w-full bg-primary text-primary-foreground py-3 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
                   disabled={userRating === 0 || submitted}
                 >
-                  {submitted ? '✓ Rating Submitted!' : 'Submit Rating'}
+                  {submitted ? t('completedDetails.ratingSubmitted') : t('completedDetails.submitRating')}
                 </button>
               </form>
             </div>
 
             {/* Rating distribution */}
             <div className="pt-6 border-t border-border">
-              <h4 className="mb-4">Rating Distribution</h4>
+              <h4 className="mb-4">{t('completedDetails.ratingDistribution')}</h4>
               <div className="space-y-2">
                 {ratingDistribution.map((dist) => (
                   <div key={dist.stars} className="flex items-center gap-3">
@@ -202,7 +198,7 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
                       />
                     </div>
                     <span className="text-sm text-muted-foreground w-12 text-right">
-                      {dist.count}
+                      {format.number(dist.count)}
                     </span>
                   </div>
                 ))}
@@ -211,43 +207,19 @@ export function CompletedProjectDetails({ project, onClose }: CompletedProjectDe
 
             {/* Recent reviews */}
             <div className="pt-6 border-t border-border">
-              <h4 className="mb-4">Recent Reviews</h4>
+              <h4 className="mb-4">{t('completedDetails.recentReviews')}</h4>
               <div className="space-y-4">
-                <div className="bg-muted rounded-lg p-4">
-                  <div className="flex items-start justify-between mb-2">
-                    <div>
-                      <RatingStars rating={5} size="sm" />
-                      <div className="text-xs text-muted-foreground mt-1">2 weeks ago</div>
+                {recentReviews.map((review, i) => (
+                  <div key={i} className="bg-muted rounded-lg p-4">
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <RatingStars rating={review.rating} size="sm" />
+                        <div className="text-xs text-muted-foreground mt-1">{review.timeAgo}</div>
+                      </div>
                     </div>
+                    <p className="text-sm">{review.text}</p>
                   </div>
-                  <p className="text-sm">
-                    Excellent work! The new bridge looks great and the bike lanes are a fantastic addition. Really improved traffic flow.
-                  </p>
-                </div>
-
-                <div className="bg-muted rounded-lg p-4">
-                  <div className="flex items-start justify-between mb-2">
-                    <div>
-                      <RatingStars rating={4} size="sm" />
-                      <div className="text-xs text-muted-foreground mt-1">3 weeks ago</div>
-                    </div>
-                  </div>
-                  <p className="text-sm">
-                    Good quality construction. Only minor issue is the project took longer than expected, but the end result is solid.
-                  </p>
-                </div>
-
-                <div className="bg-muted rounded-lg p-4">
-                  <div className="flex items-start justify-between mb-2">
-                    <div>
-                      <RatingStars rating={5} size="sm" />
-                      <div className="text-xs text-muted-foreground mt-1">1 month ago</div>
-                    </div>
-                  </div>
-                  <p className="text-sm">
-                    Very pleased with how this turned out. The pedestrian walkways are much safer now.
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
           </div>

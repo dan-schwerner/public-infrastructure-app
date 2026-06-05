@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "title": "Open Public Infrastructure",
+    "description": "A platform where citizens see the infrastructure projects near them, share their views, and report risks. Transparency built into the core."
+  },
+  "appMetadata": {
+    "title": "Infrastructure Projects — App",
+    "description": "See the infrastructure projects near you, give your feedback, and report risks."
+  },
+  "nav": {
+    "purpose": "Purpose",
+    "principles": "Principles",
+    "contact": "Contact",
+    "openApp": "Open the App"
+  },
+  "a11y": {
+    "openMenu": "open menu"
+  },
+  "banner": {
+    "eyebrow": "Projects Near You",
+    "headline": "See What's Being Built",
+    "subhead": "Let's start ensuring transparency"
+  },
+  "home": {
+    "purposeHeading": "Purpose",
+    "purposeBody1": "The economics of innovation is the economics of systems: a good system measures its results, publishes them, and learns from them. But public projects rarely start by defining the problem or publishing their goal — and without a yardstick to judge them by, they become an «open loop» that repeats the same mistakes, perfectly legally.",
+    "purposeBody2": "This platform closes that loop: it makes visible what is being built, lets citizens have their say while it still matters, and gathers risks and feedback in one place — instead of an FOI form, a wait, and hope.",
+    "tryHeading": "Try the platform",
+    "tryBody": "See how public infrastructure can look when it's open by default: active and completed projects, citizen feedback, and risk reports — all in one place.",
+    "aboutHeading": "About me",
+    "aboutBody": "I'm Daniel Falzon, a software engineer with ten years' experience building systems. This platform is part of a series of writings on how Malta — small enough to be run well — can build its things with discipline, transparency and care.",
+    "visitProfile": "Visit my main profile"
+  },
+  "principles": {
+    "label": "The Principles",
+    "userFirstTitle": "Users first",
+    "userFirstBody": "Every system exists for the people who use it. A good service starts from people and works backwards, not from the department's internal logic.",
+    "transparencyTitle": "Transparency at the core",
+    "transparencyBody": "A system you can't see into is a system you can't trust. When how a decision was made is visible automatically, anyone can check it.",
+    "bestPeopleTitle": "Built by the best people",
+    "bestPeopleBody": "Competence isn't a luxury in public works; it's the difference between something that serves a generation and something that falls apart again within a few years.",
+    "growTalentTitle": "Growing Maltese talent",
+    "growTalentBody": "When the public sector invests in capacity, it strengthens the companies, engineers and skills we have at home instead of importing them forever."
+  },
+  "contact": {
+    "heading": "Contact Me",
+    "intro": "Want to talk about this project, collaborate, or comment on one of my blog posts? Don't hesitate to get in touch!",
+    "linkedin": "LinkedIn"
+  },
+  "contactForm": {
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "submit": "Send",
+    "submitting": "Sending…",
+    "invalidEmail": "Enter a valid email address.",
+    "successTitle": "Thanks for getting in touch!",
+    "successBody": "I'll reply as soon as I can.",
+    "toast": "Message sent — thank you!",
+    "error": "Something went wrong. Please try again."
+  },
+  "chatWidget": {
+    "title": "Contact Me",
+    "subtitle": "Send me a quick message",
+    "close": "close",
+    "open": "contact me"
+  },
+  "appShell": {
+    "mockNotice": "⚠️ Sample data — this is not related to any real project.",
+    "back": "← Back"
+  },
+  "feedback": {
+    "headerTitle": "Infrastructure Projects",
+    "searchPlaceholder": "Search projects by location...",
+    "tabs": { "active": "Active Projects", "completed": "Completed" },
+    "filters": { "all": "All", "planned": "Planned", "inProgress": "In Progress" },
+    "view": { "list": "List View", "map": "Map View" },
+    "nearYou": "{count, plural, =1 {# active project near you} other {# active projects near you}}",
+    "completedCount": "{count, plural, =1 {# completed project} other {# completed projects}}",
+    "status": { "planned": "planned", "in-progress": "in progress", "completed": "completed" },
+    "card": {
+      "risksReported": "{count, plural, =1 {# active risk reported} other {# active risks reported}}",
+      "feedbackSubmissions": "{count, plural, =1 {# community feedback submission} other {# community feedback submissions}}",
+      "completedOn": "Completed {date}",
+      "ratings": "{count, plural, =1 {# rating} other {# ratings}}",
+      "youRated": "You rated: {rating}★",
+      "completedBadge": "Completed"
+    },
+    "kinds": { "concern": "Concern", "suggestion": "Suggestion", "opinion": "Opinion" },
+    "severity": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "lowLabel": "Low Severity",
+      "mediumLabel": "Medium Severity",
+      "highLabel": "High Severity"
+    },
+    "details": {
+      "description": "Description",
+      "location": "Location",
+      "distanceFromYou": "{distance} from you",
+      "timeline": "Timeline",
+      "budget": "Budget",
+      "contractor": "Contractor",
+      "tabs": { "details": "Details", "feedback": "Feedback", "risks": "Risks" },
+      "submitFeedbackHeading": "Submit Your Feedback",
+      "feedbackIntro": "Share your concerns, suggestions, or opinions about this project.",
+      "feedbackType": "Feedback Type",
+      "yourFeedbackLabel": "Your {kind}",
+      "describePlaceholder": "Describe your {kind}...",
+      "submitFeedback": "Submit Feedback",
+      "submitted": "✓ Submitted!",
+      "recentFeedback": "Recent Feedback ({count})",
+      "reportRiskHeading": "Report an Active Risk",
+      "riskIntro": "Flag any safety concerns or risks you observe at the project site.",
+      "riskSeverity": "Risk Severity",
+      "riskDescription": "Risk Description",
+      "riskPlaceholder": "Describe the risk or safety concern...",
+      "reportRisk": "Report Risk",
+      "riskReported": "✓ Risk Reported!",
+      "activeRisks": "Active Risks ({count})"
+    },
+    "completedDetails": {
+      "tabs": { "details": "Details", "ratings": "Ratings & Reviews" },
+      "completedBadge": "Completed",
+      "completedLabel": "Completed",
+      "overallRating": "Overall Rating",
+      "totalRatings": "Total Ratings",
+      "rateThis": "Rate This Project",
+      "yourRating": "Your Rating",
+      "outOfStars": "{rating} out of 5 stars",
+      "yourReview": "Your Review (Optional)",
+      "reviewPlaceholder": "Share your thoughts about this completed project...",
+      "submitRating": "Submit Rating",
+      "ratingSubmitted": "✓ Rating Submitted!",
+      "ratingDistribution": "Rating Distribution",
+      "recentReviews": "Recent Reviews"
+    },
+    "map": {
+      "youAreHere": "You are here",
+      "legend": "Legend",
+      "planned": "Planned",
+      "inProgress": "In Progress",
+      "completed": "Completed"
+    }
+  },
+  "localeSwitcher": {
+    "label": "Language",
+    "mt": "Maltese",
+    "en": "English"
+  },
+  "contactApi": {
+    "invalidRequest": "Invalid request.",
+    "invalidEmail": "Enter a valid email.",
+    "emptyMessage": "Write a message.",
+    "notConfigured": "The email service is not configured yet.",
+    "sendFailed": "We couldn't send the message. Please try again."
+  }
+}

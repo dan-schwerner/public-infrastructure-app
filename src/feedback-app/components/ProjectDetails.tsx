@@ -1,28 +1,27 @@
-import { X, MapPin, Calendar, MessageSquare, AlertTriangle, ArrowLeft } from 'lucide-react';
+import { MapPin, Calendar, MessageSquare, AlertTriangle, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  location: string;
-  distance: string;
-  status: 'planned' | 'in-progress' | 'completed';
-  startDate: string;
-  endDate: string;
-  riskCount: number;
-  feedbackCount: number;
-  detailedDescription: string;
-  budget: string;
-  contractor: string;
-}
+import { useLocale, useTranslations } from 'next-intl';
+import { mockData, type Project } from '../data/mockData';
+import type { Locale } from '@/i18n/config';
 
 interface ProjectDetailsProps {
   project: Project;
   onClose: () => void;
 }
 
+// Severity-based styling for the (demo) active-risk cards.
+const riskStyles: Record<'low' | 'medium' | 'high', { box: string; icon: string }> = {
+  high: { box: 'bg-destructive/10 border-destructive/20', icon: 'text-destructive' },
+  medium: { box: 'bg-amber-50 border-amber-200', icon: 'text-amber-600' },
+  low: { box: 'bg-green-50 border-green-200', icon: 'text-green-600' },
+};
+
 export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
+  const t = useTranslations('feedback');
+  const locale = useLocale() as Locale;
+  const recentFeedback = mockData.sampleFeedback[locale];
+  const activeRisks = mockData.sampleRisks[locale];
+
   const [activeTab, setActiveTab] = useState<'details' | 'feedback' | 'risks'>('details');
   const [feedbackType, setFeedbackType] = useState<'concern' | 'suggestion' | 'opinion'>('concern');
   const [feedbackText, setFeedbackText] = useState('');
@@ -54,6 +53,8 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
     completed: 'bg-green-100 text-green-800',
   };
 
+  const kindLabel = t(`kinds.${feedbackType}`);
+
   return (
     <div className="fixed inset-0 bg-background z-50 overflow-auto">
       <div className="sticky top-0 bg-background border-b border-border z-10">
@@ -73,7 +74,7 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                 : 'text-muted-foreground'
             }`}
           >
-            Details
+            {t('details.tabs.details')}
           </button>
           <button
             onClick={() => setActiveTab('feedback')}
@@ -83,7 +84,7 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                 : 'text-muted-foreground'
             }`}
           >
-            Feedback
+            {t('details.tabs.feedback')}
           </button>
           <button
             onClick={() => setActiveTab('risks')}
@@ -93,7 +94,7 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                 : 'text-muted-foreground'
             }`}
           >
-            Risks
+            {t('details.tabs.risks')}
           </button>
         </div>
       </div>
@@ -103,12 +104,12 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
           <div className="space-y-4">
             <div>
               <span className={`inline-block px-3 py-1 rounded-full text-sm ${statusColors[project.status]}`}>
-                {project.status.replace('-', ' ')}
+                {t(`status.${project.status}`)}
               </span>
             </div>
 
             <div>
-              <h4 className="mb-2">Description</h4>
+              <h4 className="mb-2">{t('details.description')}</h4>
               <p className="text-muted-foreground">{project.detailedDescription}</p>
             </div>
 
@@ -116,16 +117,16 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-muted-foreground mt-0.5" />
                 <div>
-                  <div className="text-sm text-muted-foreground">Location</div>
+                  <div className="text-sm text-muted-foreground">{t('details.location')}</div>
                   <div>{project.location}</div>
-                  <div className="text-sm text-muted-foreground">{project.distance} from you</div>
+                  <div className="text-sm text-muted-foreground">{t('details.distanceFromYou', { distance: project.distance })}</div>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-muted-foreground mt-0.5" />
                 <div>
-                  <div className="text-sm text-muted-foreground">Timeline</div>
+                  <div className="text-sm text-muted-foreground">{t('details.timeline')}</div>
                   <div>{project.startDate} - {project.endDate}</div>
                 </div>
               </div>
@@ -133,11 +134,11 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
 
             <div className="bg-muted rounded-lg p-4 space-y-2">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Budget</span>
+                <span className="text-muted-foreground">{t('details.budget')}</span>
                 <span>{project.budget}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Contractor</span>
+                <span className="text-muted-foreground">{t('details.contractor')}</span>
                 <span>{project.contractor}</span>
               </div>
             </div>
@@ -147,14 +148,14 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
         {activeTab === 'feedback' && (
           <div className="space-y-4">
             <div>
-              <h4 className="mb-3">Submit Your Feedback</h4>
+              <h4 className="mb-3">{t('details.submitFeedbackHeading')}</h4>
               <p className="text-muted-foreground text-sm mb-4">
-                Share your concerns, suggestions, or opinions about this project.
+                {t('details.feedbackIntro')}
               </p>
 
               <form onSubmit={handleFeedbackSubmit} className="space-y-4">
                 <div>
-                  <label className="block mb-2">Feedback Type</label>
+                  <label className="block mb-2">{t('details.feedbackType')}</label>
                   <div className="flex gap-2">
                     <button
                       type="button"
@@ -165,7 +166,7 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                           : 'bg-card border-border'
                       }`}
                     >
-                      Concern
+                      {t('kinds.concern')}
                     </button>
                     <button
                       type="button"
@@ -176,7 +177,7 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                           : 'bg-card border-border'
                       }`}
                     >
-                      Suggestion
+                      {t('kinds.suggestion')}
                     </button>
                     <button
                       type="button"
@@ -187,21 +188,21 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                           : 'bg-card border-border'
                       }`}
                     >
-                      Opinion
+                      {t('kinds.opinion')}
                     </button>
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="feedback" className="block mb-2">
-                    Your {feedbackType}
+                    {t('details.yourFeedbackLabel', { kind: kindLabel })}
                   </label>
                   <textarea
                     id="feedback"
                     value={feedbackText}
                     onChange={(e) => setFeedbackText(e.target.value)}
                     className="w-full p-3 border border-border rounded-lg bg-input-background min-h-32 resize-none"
-                    placeholder={`Describe your ${feedbackType}...`}
+                    placeholder={t('details.describePlaceholder', { kind: kindLabel })}
                     required
                   />
                 </div>
@@ -211,30 +212,24 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                   className="w-full bg-primary text-primary-foreground py-3 rounded-lg hover:opacity-90 transition-opacity"
                   disabled={submitted}
                 >
-                  {submitted ? '✓ Submitted!' : 'Submit Feedback'}
+                  {submitted ? t('details.submitted') : t('details.submitFeedback')}
                 </button>
               </form>
             </div>
 
             <div className="pt-4 border-t border-border">
-              <h4 className="mb-3">Recent Feedback ({project.feedbackCount})</h4>
+              <h4 className="mb-3">{t('details.recentFeedback', { count: project.feedbackCount })}</h4>
               <div className="space-y-3">
-                <div className="bg-muted rounded-lg p-3">
-                  <div className="flex items-center gap-2 mb-2">
-                    <MessageSquare className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-sm">Concern</span>
-                    <span className="text-xs text-muted-foreground ml-auto">2 days ago</span>
+                {recentFeedback.map((item, i) => (
+                  <div key={i} className="bg-muted rounded-lg p-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <MessageSquare className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-sm">{t(`kinds.${item.kind}`)}</span>
+                      <span className="text-xs text-muted-foreground ml-auto">{item.timeAgo}</span>
+                    </div>
+                    <p className="text-sm">{item.text}</p>
                   </div>
-                  <p className="text-sm">The proposed timeline seems rushed. More time needed for environmental assessment.</p>
-                </div>
-                <div className="bg-muted rounded-lg p-3">
-                  <div className="flex items-center gap-2 mb-2">
-                    <MessageSquare className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-sm">Suggestion</span>
-                    <span className="text-xs text-muted-foreground ml-auto">5 days ago</span>
-                  </div>
-                  <p className="text-sm">Consider adding bike lanes as part of the road expansion project.</p>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -243,14 +238,14 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
         {activeTab === 'risks' && (
           <div className="space-y-4">
             <div>
-              <h4 className="mb-3">Report an Active Risk</h4>
+              <h4 className="mb-3">{t('details.reportRiskHeading')}</h4>
               <p className="text-muted-foreground text-sm mb-4">
-                Flag any safety concerns or risks you observe at the project site.
+                {t('details.riskIntro')}
               </p>
 
               <form onSubmit={handleRiskSubmit} className="space-y-4">
                 <div>
-                  <label className="block mb-2">Risk Severity</label>
+                  <label className="block mb-2">{t('details.riskSeverity')}</label>
                   <div className="flex gap-2">
                     <button
                       type="button"
@@ -261,7 +256,7 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                           : 'bg-card border-border'
                       }`}
                     >
-                      Low
+                      {t('severity.low')}
                     </button>
                     <button
                       type="button"
@@ -272,7 +267,7 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                           : 'bg-card border-border'
                       }`}
                     >
-                      Medium
+                      {t('severity.medium')}
                     </button>
                     <button
                       type="button"
@@ -283,21 +278,21 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                           : 'bg-card border-border'
                       }`}
                     >
-                      High
+                      {t('severity.high')}
                     </button>
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="risk" className="block mb-2">
-                    Risk Description
+                    {t('details.riskDescription')}
                   </label>
                   <textarea
                     id="risk"
                     value={riskDescription}
                     onChange={(e) => setRiskDescription(e.target.value)}
                     className="w-full p-3 border border-border rounded-lg bg-input-background min-h-32 resize-none"
-                    placeholder="Describe the risk or safety concern..."
+                    placeholder={t('details.riskPlaceholder')}
                     required
                   />
                 </div>
@@ -307,30 +302,24 @@ export function ProjectDetails({ project, onClose }: ProjectDetailsProps) {
                   className="w-full bg-destructive text-destructive-foreground py-3 rounded-lg hover:opacity-90 transition-opacity"
                   disabled={submitted}
                 >
-                  {submitted ? '✓ Risk Reported!' : 'Report Risk'}
+                  {submitted ? t('details.riskReported') : t('details.reportRisk')}
                 </button>
               </form>
             </div>
 
             <div className="pt-4 border-t border-border">
-              <h4 className="mb-3">Active Risks ({project.riskCount})</h4>
+              <h4 className="mb-3">{t('details.activeRisks', { count: project.riskCount })}</h4>
               <div className="space-y-3">
-                <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-3">
-                  <div className="flex items-center gap-2 mb-2">
-                    <AlertTriangle className="w-4 h-4 text-destructive" />
-                    <span className="text-sm">High Severity</span>
-                    <span className="text-xs text-muted-foreground ml-auto">1 day ago</span>
+                {activeRisks.map((risk, i) => (
+                  <div key={i} className={`border rounded-lg p-3 ${riskStyles[risk.severity].box}`}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <AlertTriangle className={`w-4 h-4 ${riskStyles[risk.severity].icon}`} />
+                      <span className="text-sm">{t(`severity.${risk.severity}Label`)}</span>
+                      <span className="text-xs text-muted-foreground ml-auto">{risk.timeAgo}</span>
+                    </div>
+                    <p className="text-sm">{risk.text}</p>
                   </div>
-                  <p className="text-sm">Exposed electrical wiring near pedestrian walkway.</p>
-                </div>
-                <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
-                  <div className="flex items-center gap-2 mb-2">
-                    <AlertTriangle className="w-4 h-4 text-amber-600" />
-                    <span className="text-sm">Medium Severity</span>
-                    <span className="text-xs text-muted-foreground ml-auto">3 days ago</span>
-                  </div>
-                  <p className="text-sm">Missing safety barriers on western perimeter.</p>
-                </div>
+                ))}
               </div>
             </div>
           </div>

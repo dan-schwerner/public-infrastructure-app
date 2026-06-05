@@ -2,45 +2,60 @@
 // https://mui.com/material-ui/react-app-bar/#responsive-app-bar-with-drawer
 'use client';
 
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 import { AppBar, Box, Toolbar, Typography, IconButton, Button } from '@mui/material';
 import { Menu } from '@mui/icons-material';
+import { useTranslations } from 'next-intl';
 import { MenuItem } from '@/types/Types';
 import MenuDrawer from '@/components/menu-drawer/MenuDrawer';
+import LocaleSwitcher from '@/components/locale-switcher/LocaleSwitcher';
 import { SITE } from '@/lib/site';
 
-type HeaderMenuProps = {
-  menuItems: MenuItem[];
-};
+// Fixed nav structure; labels are translated per locale, links stay constant.
+const NAV: { key: string; link: string }[] = [
+  { key: 'purpose', link: '#ghaliex' },
+  { key: 'principles', link: '#principji' },
+  { key: 'contact', link: '#contact' },
+];
 
-const HeaderMenu: FC<HeaderMenuProps> = ({ menuItems }) => {
+const HeaderMenu = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const t = useTranslations('nav');
+  const a11y = useTranslations('a11y');
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const menuItems: MenuItem[] = NAV.map(({ key, link }) => ({ name: t(key), link }));
+
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar component="nav" elevation={0}>
-        <Toolbar sx={{ height: '5rem' }}>
-          <IconButton
-            color="inherit"
-            aria-label="iftaħ il-menu"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <Menu />
-          </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            Daniel Falzon
-          </Typography>
+        <Toolbar sx={{ height: { xs: '3.5rem', sm: '5rem' }, minHeight: { xs: '3.5rem', sm: '5rem' } }}>
+          {/* Left zone: hamburger (mobile) + brand. Grows equally with the right
+              zone so the centre nav stays truly centred. */}
+          <Box sx={{ flexBasis: 0, flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+            <IconButton
+              color="inherit"
+              aria-label={a11y('openMenu')}
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: 'none' } }}
+            >
+              <Menu />
+            </IconButton>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ display: { xs: 'none', sm: 'block' } }}
+            >
+              Daniel Falzon
+            </Typography>
+          </Box>
+          {/* Centre zone: nav links + Open-App CTA (desktop only), like the
+              df-portfolio contact CTA. */}
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1 }}>
             {menuItems.map((item) => (
               <Button key={item.name} sx={{ color: '#fff' }} href={item.link}>
@@ -52,10 +67,14 @@ const HeaderMenu: FC<HeaderMenuProps> = ({ menuItems }) => {
               color="accent"
               href={SITE.appPath}
               disableElevation
-              sx={{ ml: 1 }}
+              sx={{ ml: 0.5 }}
             >
-              Iftaħ l-App
+              {t('openApp')}
             </Button>
+          </Box>
+          {/* Right zone: locale switcher, right-aligned. */}
+          <Box sx={{ flexBasis: 0, flexGrow: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+            <LocaleSwitcher />
           </Box>
         </Toolbar>
       </AppBar>
